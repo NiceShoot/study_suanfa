@@ -12,7 +12,6 @@ public class RemoveNthFromEnd {
     /**
      * 给你一个链表，删除链表的倒数第 n 个结点，并且返回链表的头结点。
      */
-
     public ListNode removeNthFromEnd(ListNode head, int n) {
         int count = n + 1;
         List<ListNode> list = new ArrayList<>(count);
@@ -22,21 +21,20 @@ public class RemoveNthFromEnd {
             if (list.size()>count){
                 list.remove(0);
             }
-            if (cur.next==null){
+            cur = cur.next;
+            if (cur==null){
+                int size = list.size();
+                if (size == 1) return null;
                 ListNode listNode0 = list.get(0);
-                if (list.size() < n+1){
-                    if (list.size()==1){
-                        listNode0 = null;
-                    }
-                    else if (list.size() == 2){
-                        listNode0 = list.get(1);
-                    }
-                }
-                else {
-                    listNode0.next = list.get(2);
+                ListNode listNode1 = list.get(1);
+                if (size == n) return listNode1;
+                if (n==1){
+                    listNode0.next = null;
+                }else {
+                    if (size == 2) return listNode1;
+                    else listNode0.next = list.get(2);
                 }
             }
-            cur = cur.next;
         }
         return head;
     }
