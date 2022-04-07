@@ -20,17 +20,20 @@ public class 剑指10_I_斐波那契数列 {
      */
 
     public static void main(String[] args) {
-        System.out.println(fib(44));
+        System.out.println(fib(2));
     }
 
     public static int fib(int n) {
-        int i = fib2(n);
-        return i % 1000000007;
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        int a=1,b=0;
+        for (int i=1;i<n;i++){
+          a = b+a;
+          b = a-b;
+          a = a%1000000007;
+        }
+        return a;
     }
 
-    public static int fib2(int n) {
-        if (n==0) return 0;
-        if (n==1) return 1;
-        return fib2(n-1)+fib2(n-2);
-    }
+
 }
